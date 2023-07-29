@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import br.ufscar.dc.dsw.domain.Locadora;
 
 @SuppressWarnings("unchecked")
-public interface ILocadoraDAO extends CrudRepository<Locadora, Long>{
+public interface ILocadoraDAO extends CrudRepository<Locadora, String>{
 
 	Locadora findById(long id);
 	

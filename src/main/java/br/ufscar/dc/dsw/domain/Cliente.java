@@ -30,7 +30,7 @@ public class Cliente extends Usuario {
 	private String telefone;
     
 	@NotNull(message = "{NotNull.cliente.sexo}")
-	@Column(nullable = false, length = 5)
+	@Column(nullable = false, length = 20)
 	private String sexo;
 	
 	@NotNull(message = "{NotNull.cliente.dataNascimento}")

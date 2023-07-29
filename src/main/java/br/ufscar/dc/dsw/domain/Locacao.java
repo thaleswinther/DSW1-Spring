@@ -8,24 +8,23 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+//import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "Locacao",
+/*@Table(name = "Locacao",
        uniqueConstraints = {
            @UniqueConstraint(name = "unique_locacao_cliente_datahora", columnNames = {"cliente_id", "dataHora"}),
            @UniqueConstraint(name = "unique_locacao_locadora_datahora", columnNames = {"locadora_id", "dataHora"})
-       })
+       })*/
+@Table(name = "Locacao")
 public class Locacao extends AbstractEntity<Long> {
 
-	@NotNull(message = "{NotNull.locacao.cliente}")
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
-	@NotNull(message = "{NotNull.locadora.cliente}")
 	@ManyToOne
 	@JoinColumn(name = "locadora_id")
 	private Locadora locadora;

@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.ufscar.dc.dsw.dao.ILocacaoDAO;
 import br.ufscar.dc.dsw.domain.Locacao;
-import br.ufscar.dc.dsw.domain.Cliente;
-import br.ufscar.dc.dsw.domain.Locadora;
+//import br.ufscar.dc.dsw.domain.Cliente;
+//import br.ufscar.dc.dsw.domain.Locadora;
 
 import br.ufscar.dc.dsw.service.spec.ILocacaoService;
 
@@ -30,12 +30,12 @@ public class LocacaoService implements ILocacaoService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<Locacao> buscarTodosPorCliente(Cliente cliente) {
-		return dao.findAllByCliente(cliente);
+	public List<Locacao> buscarTodosPorIdCliente(Long id) {
+		return dao.findAllBycliente_id(id);
 	}
 
 	@Transactional(readOnly = true)
-	public List<Locacao> buscarTodosPorLocadora(Locadora locadora) {
-		return dao.findAllByLocadora(locadora);
+	public List<Locacao> buscarTodosPorIdLocadora(Long id) {
+		return dao.findAllBylocadora_id(id);
 	}
 }
