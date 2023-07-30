@@ -1,5 +1,6 @@
 package br.ufscar.dc.dsw.controller;
 
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -39,7 +40,7 @@ public class LocacaoController {
 	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Locacao locacao) {
-
+		
 		return "locacao/cadastro";
 	}
 	

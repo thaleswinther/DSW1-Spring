@@ -9,11 +9,11 @@
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><i class="oi oi-caret-right"></i>
-						<span th:text="#{compra.cadastrar.label}"></span></li>
+						<span th:text="#{locacao.cadastrar.label}"></span></li>
 				</ul>
-				<a class="btn btn-primary btn-md" th:href="@{/compras/listar}"
+				<a class="btn btn-primary btn-md" th:href="@{/locacoes/listar}"
 					role="button"> <span class="oi oi-spreadsheet" title="Listar"
-					aria-hidden="true"></span> <span th:text="#{compra.listar.label}"></span>
+					aria-hidden="true"></span> <span th:text="#{locacao.listar.label}"></span>
 				</a>
 			</div>
 		</nav>
@@ -22,7 +22,7 @@
 
 			<div th:replace="fragments/alert"></div>
 
-			<form th:action="@{/compras/salvar}" th:object="${compra}"
+			<form th:action="@{/locacoes/salvar}" th:object="${locacao}"
 				method="POST">
 
 				<div th:replace="fragments/validacao :: validacao"></div>
@@ -34,29 +34,23 @@
 							<thead>
 								<tr>
 									<th>#</th>
-									<th th:text="#{livro.titulo.label}"></th>
-									<th th:text="#{livro.autor.label}"></th>
-									<th th:text="#{livro.editora.label}"></th>
+									<th th:text="#{locacao.locadora.label}"></th>
 									<th th:text="#{livro.ano.label}"></th>
 									<th th:text="#{livro.preco.label}"></th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="livro : ${livros}">
+								<tr th:each="locadora : ${locadoras}">
 									<td>
-										<input type="radio" th:id="${livro.id}" name="livro" th:value="${livro.id}" th:field="*{livro}" required>
+										<input type="radio" th:id="${locadora.id}" name="locadora" th:value="${locadora.id}" th:field="*{locadora}" required>
 									</td>
-									<td th:text="${livro.titulo}"></td>
-									<td th:text="${livro.autor}"></td>
-									<td th:text="${livro.editora.nome}"></td>
-									<td th:text="${livro.ano}"></td>
-									<td th:text="|R$ ${#numbers.formatDecimal(livro.preco,2,2,'COMMA')}|"></td>
+									<td th:text="${locadora.name}"></td>
 								</tr>
 							</tbody>
 						</table>
 
 						<div class="invalid-feedback">
-							<span th:errors="*{livro}"></span>
+							<span th:errors="*{locadora}"></span>
 						</div>
 					</div>
 				</div>

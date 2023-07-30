@@ -1,7 +1,7 @@
 package br.ufscar.dc.dsw.domain;
 
 
-import java.time.LocalDateTime;
+//import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,7 +31,7 @@ public class Locacao extends AbstractEntity<Long> {
 
 	@NotNull(message = "{NotNull.locacao.dataHora}")
 	@Column(nullable = false, unique = false)
-	private LocalDateTime dataHora;
+	private String dataHora;
     
 	public Cliente getCliente() {
 		return cliente;
@@ -49,11 +49,11 @@ public class Locacao extends AbstractEntity<Long> {
 		this.locadora = locadora;
 	}
 
-	public LocalDateTime getDataHora() {
+	public String getDataHora() {
 		return dataHora;
 	}
 
-	public void setDataHora(LocalDateTime dataHora) {
+	public void setDataHora(String dataHora) {
 		this.dataHora = dataHora;
 	}
 

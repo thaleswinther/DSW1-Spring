@@ -1,8 +1,5 @@
 package br.ufscar.dc.dsw;
 
-//import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -136,13 +133,13 @@ public class LocacaoBicicletasApplication {
 			Locacao locacao1 = new Locacao();
 			locacao1.setCliente(c1); 
 			locacao1.setLocadora(l1); 
-			locacao1.setDataHora(LocalDateTime.of(2023, 8, 28, 10, 0, 0));
+			locacao1.setDataHora("2023-08-28 10:00:00");
 			locacaoDAO.save(locacao1);
 
 			Locacao locacao2 = new Locacao();
 			locacao2.setCliente(c2); 
 			locacao2.setLocadora(l2); 
-			locacao2.setDataHora(LocalDateTime.of(2023, 8, 29, 14, 0, 0));
+			locacao2.setDataHora("2023-08-29 14:00:00");
 			locacaoDAO.save(locacao2); 
 
 			Usuario u6 = new Usuario();
