@@ -3,6 +3,7 @@ package br.ufscar.dc.dsw.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -52,14 +53,14 @@ public class LocadoraController {
 	}
 	
 	@PostMapping("/editar")
-	public String editar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr) {
+	public String editar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr, BCryptPasswordEncoder encoder) {
 		
-		// Apenas rejeita se o problema não for com o CNPJ (CNPJ campo read-only) 
 		
-		if (result.getFieldErrorCount() > 1 || result.getFieldError("CNPJ") == null) {
+		if (result.hasErrors()) {
 			return "locadora/cadastro";
 		}
 
+		locadora.setPassword(encoder.encode(locadora.getPassword()));
 		service.salvar(locadora);
 		attr.addFlashAttribute("sucess", "Locadora editada com sucesso.");
 		return "redirect:/locadoras/listar";
