@@ -29,9 +29,13 @@ public class Locacao extends AbstractEntity<Long> {
 	@JoinColumn(name = "locadora_id")
 	private Locadora locadora;
 
-	@NotNull(message = "{NotNull.locacao.dataHora}")
+	@NotNull(message = "{NotNull.locacao.data}")
+	@Column(nullable = false, unique = false, length = 30)
+	private String data;
+
+	@NotNull(message = "{NotNull.locacao.hora}")
 	@Column(nullable = false, unique = false)
-	private String dataHora;
+	private String hora;
     
 	public Cliente getCliente() {
 		return cliente;
@@ -49,12 +53,20 @@ public class Locacao extends AbstractEntity<Long> {
 		this.locadora = locadora;
 	}
 
-	public String getDataHora() {
-		return dataHora;
+	public String getData() {
+		return data;
 	}
 
-	public void setDataHora(String dataHora) {
-		this.dataHora = dataHora;
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	public String getHora() {
+		return hora;
+	}
+
+	public void setHora(String hora) {
+		this.hora = hora;
 	}
 
 

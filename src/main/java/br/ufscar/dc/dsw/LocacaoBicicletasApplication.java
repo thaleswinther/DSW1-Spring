@@ -25,55 +25,7 @@ public class LocacaoBicicletasApplication {
 	@Bean
 	public CommandLineRunner demo(IUsuarioDAO usuarioDAO, BCryptPasswordEncoder encoder, ILocadoraDAO locadoraDAO, IClienteDAO clienteDAO, ILocacaoDAO locacaoDAO) {
 		return (args) -> {
-			
-			/*Usuario u1 = new Usuario();
-			u1.setEmail("usuario1@gmail.com");
-			u1.setPassword(encoder.encode("usuario1"));
-			u1.setName("Cliente 1");
-			u1.setRole("Cliente");
-			u1.setEnabled(true);
-			usuarioDAO.save(u1);
-			
-			Usuario u2 = new Usuario();
-			u2.setEmail("usuario2@gmail.com");
-			u2.setPassword(encoder.encode("usuario2"));
-			u2.setName("Cliente 2");
-			u2.setRole("Cliente");
-			u2.setEnabled(true);
-			usuarioDAO.save(u2);
-			
-			Usuario u3 = new Usuario();
-			u3.setEmail("usuario3@gmail.com");
-			u3.setPassword(encoder.encode("usuario3"));
-			u3.setName("Locadora 1");
-			u3.setRole("Locadora");
-			u3.setEnabled(true);
-			usuarioDAO.save(u3);
-
-			Usuario u4 = new Usuario();
-			u4.setEmail("usuario4@gmail.com");
-			u4.setPassword(encoder.encode("usuario4"));
-			u4.setName("Locadora 2");
-			u4.setRole("Locadora");
-			u4.setEnabled(true);
-			usuarioDAO.save(u4);
-
-			Usuario u5 = new Usuario();
-			u5.setEmail("usuario5@gmail.com");
-			u5.setPassword(encoder.encode("usuario5"));
-			u5.setName("Usuario 5");
-			u5.setRole("Admin");
-			u5.setEnabled(true);
-			usuarioDAO.save(u5);
-
-			Usuario u6 = new Usuario();
-			u6.setEmail("usuario6@gmail.com");
-			u6.setPassword(encoder.encode("usuario6"));
-			u6.setName("Locadora 3");
-			u6.setRole("Locadora");
-			u6.setEnabled(true);
-			usuarioDAO.save(u6);*/
-			
+					
 			Cliente c1 = new Cliente();
 			c1.setEmail("usuario1@gmail.com");
 			c1.setPassword(encoder.encode("usuario1"));
@@ -133,13 +85,15 @@ public class LocacaoBicicletasApplication {
 			Locacao locacao1 = new Locacao();
 			locacao1.setCliente(c1); 
 			locacao1.setLocadora(l1); 
-			locacao1.setDataHora("2023-08-28 10:00:00");
+			locacao1.setData("2023-08-28");
+			locacao1.setHora("10:00:00");
 			locacaoDAO.save(locacao1);
 
 			Locacao locacao2 = new Locacao();
 			locacao2.setCliente(c2); 
 			locacao2.setLocadora(l2); 
-			locacao2.setDataHora("2023-08-29 14:00:00");
+			locacao2.setData("2023-08-29");
+			locacao2.setHora("14:00:00");
 			locacaoDAO.save(locacao2); 
 
 			Usuario u6 = new Usuario();

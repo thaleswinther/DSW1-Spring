@@ -35,7 +35,8 @@
 							<th class="bg-warning" th:text="#{locacao.nome.locadora.label}"></th>
 							<th class="bg-warning" th:text="#{locacao.cnpj.locadora.label}"></th>
 							<th class="bg-warning" th:text="#{locacao.cidade.locadora.label}"></th>
-							<th class="bg-warning" th:text="#{locacao.dataHora.label}"></th>
+							<th class="bg-warning" th:text="#{locacao.data.label}"></th>
+							<th class="bg-warning" th:text="#{locacao.hora.label}"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -46,7 +47,8 @@
 							<td th:text="${locacao.locadora.name}"></td>
 							<td th:text="${locacao.locadora.CNPJ}"></td>
 							<td th:text="${locacao.locadora.cidade}"></td>
-							<td th:text="${locacao.dataHora}"></td>
+							<td th:text="${locacao.data}"></td>
+							<td th:text="${locacao.hora}"></td>
 						</tr>
 					</tbody>
 				</table>

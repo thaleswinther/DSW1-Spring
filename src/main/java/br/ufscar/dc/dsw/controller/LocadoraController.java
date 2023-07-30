@@ -77,4 +77,5 @@ public class LocadoraController {
 		}
 		return listar(model);
 	}
+
 }
