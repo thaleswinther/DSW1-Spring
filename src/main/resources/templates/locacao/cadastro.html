@@ -1,89 +1,72 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
 <head>
-    <title>Cadastro de Locação</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <section class="layout-content" layout:fragment="corpo">
-        <nav class="navbar navbar-expand-md bg-light">
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <i class="oi oi-caret-right"></i>
-                        <span th:text="#{locacao.cadastrar.label}"></span>
-                    </li>
-                </ul>
-                <a class="btn btn-primary btn-md" th:href="@{/locacoes/listar}" role="button">
-                    <span class="oi oi-spreadsheet" title="Listar" aria-hidden="true"></span>
-                    <span th:text="#{locacao.listar.label}"></span>
-                </a>
-            </div>
-        </nav>
+	<section class="layout-content" layout:fragment="corpo">
 
-        <div class="container" id="cadastro">
-            <div th:replace="fragments/alert"></div>
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+						<span th:text="#{locacao.cadastrar.label}"></span></li>
+				</ul>
+				<a class="btn btn-primary btn-md" th:href="@{/locacoes/listar}"
+					role="button"> <span class="oi oi-spreadsheet" title="Listar"
+					aria-hidden="true"></span> <span th:text="#{locacao.listar.label}"></span>
+				</a>
+			</div>
+		</nav>
 
-            <form th:action="@{/locacoes/salvar}" th:object="${locacao}" method="POST">
-                <div th:replace="fragments/validacao :: validacao"></div>
+		<div class="container" id="cadastro">
 
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <table class="table table-striped table-hover table-sm">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th th:text="#{locacao.locadora.label}"></th>
-                                    
-                                    <th th:text="#{locacao.hora.label}"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="locadora : ${locadoras}">
-                                    <td>
-                                        <input type="radio" th:id="${locadora.id}" name="locadora"
-                                            th:value="${locadora.id}" th:field="*{locadora}" required>
-                                    </td>
-                                    <td th:text="${locadora.name}"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+			<div th:replace="fragments/alert"></div>
 
-                        <div class="invalid-feedback">
-                            <span th:errors="*{locadora}"></span>
-                        </div>
-                    </div>
+			<form th:action="@{/locacoes/salvar}" th:object="${locacao}"
+				method="POST">
 
+				<div th:replace="fragments/validacao :: validacao"></div>
+
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<label th:text="#{locacao.locadora.label}"></label>
+						<select name="locadora" th:field="*{locadora}" class="form-control" required>
+							<option value="">Selecione a locadora</option>
+							<!-- Use th:each para iterar pelas locadoras e gerar as opções -->
+							<option th:each="locadora : ${locadoras}" th:value="${locadora.id}" th:text="${locadora.name}"></option>
+						</select>
+						<div class="invalid-feedback">
+							<span th:errors="*{locadora}"></span>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label th:text="#{locacao.data.label}" for="data"></label>
+						<input type="date" id="data" name="data" th:field="*{data}" class="form-control" required>
+						<div class="invalid-feedback">
+							<span th:errors="*{data}"></span>
+						</div>
+					</div>
 
 					<div class="form-group col-md-6">
-                        <label th:text="#{locacao.data.label}" for="data"></label>
-                        <input type="date" id="data" name="data" th:field="*{data}" required
-                            class="form-control">
-                        <div class="invalid-feedback">
-                            <span th:errors="*{data}"></span>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label th:text="#{locacao.hora.label}" for="hora"></label>
-                        <select id="hora" name="hora" th:field="*{hora}" required class="form-control">
-                            <option value="">Selecione a hora</option>
-                            <option th:each="hour : ${#numbers.sequence(0, 23)}" th:value="${hour}"
-                                th:text="${hour} + ':00'"></option>
-                        </select>
-                        <div class="invalid-feedback">
-                            <span th:errors="*{hora}"></span>
-                        </div>
-                    </div>
-                </div>
+						<label th:text="#{locacao.hora.label}" for="hora"></label>
+						<select id="hora" name="hora" th:field="*{hora}" class="form-control" required>
+							<option value="">Selecione o horário</option>
+							<!-- Use th:each para iterar pelos horários e gerar as opções -->
+							<option th:each="hour : ${#numbers.sequence(0, 23)}" th:value="${hour}" th:text="${hour + ':00'}"></option>
+						</select>
+						<div class="invalid-feedback">
+							<span th:errors="*{hora}"></span>
+						</div>
+					</div>
+				</div>
 
-
-                <input type="hidden" th:field="*{locadora}" id="locadora">
-
-                <button type="submit" th:text="#{button.salvar.label}" class="btn btn-primary btn-sm">
-                    Salvar
-                </button>
-            </form>
-        </div>
-    </section>
+				<button type="submit" th:text="#{button.salvar.label}"
+					class="btn btn-primary btn-sm"></button>
+			</form>
+		</div>
+	</section>
 </body>
 </html>
