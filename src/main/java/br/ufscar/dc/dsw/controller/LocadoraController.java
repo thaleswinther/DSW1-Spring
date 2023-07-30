@@ -35,12 +35,13 @@ public class LocadoraController {
 	}
 	
 	@PostMapping("/salvar")
-	public String salvar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr) {
+	public String salvar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr, BCryptPasswordEncoder encoder) {
 		
 		if (result.hasErrors()) {
 			return "locadora/cadastro";
 		}
 		
+		locadora.setPassword(encoder.encode(locadora.getPassword()));
 		service.salvar(locadora);
 		attr.addFlashAttribute("sucess", "Locadora inserida com sucesso.");
 		return "redirect:/locadoras/listar";

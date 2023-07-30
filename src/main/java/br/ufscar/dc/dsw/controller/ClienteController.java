@@ -36,12 +36,13 @@ public class ClienteController {
 	}
 
 	@PostMapping("/salvar")
-	public String salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr) {
+	public String salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr, BCryptPasswordEncoder encoder) {
 
 		if (result.hasErrors()) {
 			return "cliente/cadastro";
 		}
-		
+
+		cliente.setPassword(encoder.encode(cliente.getPassword()));
 		clienteService.salvar(cliente);
 		attr.addFlashAttribute("sucess", "Cliente inserido com sucesso");
 		return "redirect:/clientes/listar";

@@ -33,7 +33,7 @@
 						<input type="text" class="form-control" id="email"
 							th:placeholder="#{usuario.username.label}"
 							autofocus="autofocus" th:field="*{email}"
-							th:classappend="${#fields.hasErrors('username')} ? is-invalid" />
+							th:classappend="${#fields.hasErrors('email')} ? is-invalid" />
 
 						<div class="invalid-feedback">
 							<span th:errors="*{email}"></span>
@@ -42,7 +42,7 @@
 
 					<div class="form-group col-md-6">
 						<label th:text="#{usuario.password.label}" for="password"></label> 
-						<input type="text" class="form-control" id="password"
+						<input type="password" class="form-control" id="password"
 							th:placeholder="#{usuario.password.label}" autofocus="autofocus"
 							th:field="*{password}"
 							th:classappend="${#fields.hasErrors('password')} ? is-invalid" th:readonly="${usuario.id != null}"/>
@@ -63,24 +63,14 @@
 						</div>
 					</div>
 					
-					<div class="form-group col-md-6">
-						<label th:text="#{usuario.CPF.label}" for="CPF"></label> 
-						<input type="text" class="form-control" id="CPF" th:field="*{CPF}"
-							autofocus="autofocus" placeholder="___.___.___-__"
-							th:classappend="${#fields.hasErrors('CPF')} ? is-invalid" 
-							data-mask="000.000.000-00" data-mask-reverse="true" />
-							
-						<div class="invalid-feedback">
-							<span th:errors="*{CPF}"></span>
-						</div>
-					</div>
 					
 					<div class="form-group col-md-6">
 						<label th:text="#{usuario.role.label}" for="role"></label> 
 						<select id="role" class="form-control" th:field="*{role}"
 							th:classappend="${#fields.hasErrors('role')} ? is-invalid">
-							<option value="ROLE_ADMIN">ROLE_ADMIN</option>
-							<option value="ROLE_USER">ROLE_USER</option>
+							<option value="ROLE_Cliente">Cliente</option>
+							<option value="ROLE_Locadora">Locadora</option>
+							<option value="ROLE_Admin">Admin</option>
 						</select>
 
 						<div class="invalid-feedback">

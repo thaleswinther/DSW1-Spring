@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
 public class Cliente extends Usuario {
 
 	@NotBlank(message = "{NotBlank.cliente.cpf}")
-	@Size(max = 60)
+	@Size(min = 14, max = 14, message = "{Size.cliente.CPF}")
 	@Column(nullable = false, length = 60, unique = true)
 	private String CPF;
 

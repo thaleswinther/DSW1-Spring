@@ -87,10 +87,11 @@
 
 					<div class="form-group col-md-6">
 						<label th:text="#{locadora.papel.label}" for="role"></label>
-						<input type="text" class="form-control" id="role" placeholder="Papel"
-							   autofocus="autofocus" th:field="*{role}"
-							   th:classappend="${#fields.hasErrors('role')} ? is-invalid" />
-					
+						<select id="role" class="form-control" th:field="*{role}"
+							th:classappend="${#fields.hasErrors('role')} ? is-invalid">
+							<option value="ROLE_Locadora">Locadora</option>
+							<option value="ROLE_Admin">Admin</option>
+						</select>
 						<div class="invalid-feedback">
 							<span th:errors="*{role}"></span>
 						</div>
