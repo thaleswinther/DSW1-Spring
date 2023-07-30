@@ -81,7 +81,7 @@ public class LocacaoBicicletasApplication {
 			c1.setEmail("usuario1@gmail.com");
 			c1.setPassword(encoder.encode("usuario1"));
 			c1.setName("Cliente 1");
-			c1.setRole("Cliente");
+			c1.setRole("ROLE_Cliente");
 			c1.setEnabled(true);
 			c1.setCPF("012.345.678-90");
 			c1.setTelefone("11111111");
@@ -93,7 +93,7 @@ public class LocacaoBicicletasApplication {
 			c2.setEmail("usuario2@gmail.com");
 			c2.setPassword(encoder.encode("usuario2"));
 			c2.setName("Cliente 2");
-			c2.setRole("Cliente");
+			c2.setRole("ROLE_Cliente");
 			c2.setEnabled(true);
 			c2.setCPF("985.849.614-10");
 			c2.setTelefone("22222222");
@@ -105,7 +105,7 @@ public class LocacaoBicicletasApplication {
 			l1.setEmail("usuario3@gmail.com");
 			l1.setPassword(encoder.encode("usuario3"));
 			l1.setName("Locadora 1");
-			l1.setRole("Locadora");
+			l1.setRole("ROLE_Locadora");
 			l1.setEnabled(true);
 			l1.setCNPJ("55.789.390/0008-99");
 			l1.setCidade("São Carlos");
@@ -115,7 +115,7 @@ public class LocacaoBicicletasApplication {
 			l2.setEmail("usuario4@gmail.com");
 			l2.setPassword(encoder.encode("usuario4"));
 			l2.setName("Locadora 2");
-			l2.setRole("Locadora");
+			l2.setRole("ROLE_Locadora");
 			l2.setEnabled(true);
 			l2.setCNPJ("71.150.470/0001-40");
 			l2.setCidade("São Paulo");
@@ -125,7 +125,7 @@ public class LocacaoBicicletasApplication {
 			l3.setEmail("usuario5@gmail.com");
 			l3.setPassword(encoder.encode("usuario5"));
 			l3.setName("Locadora 3");
-			l3.setRole("Locadora");
+			l3.setRole("ROLE_Locadora");
 			l3.setEnabled(true);
 			l3.setCNPJ("32.106.536/0001-82");
 			l3.setCidade("Bauru");
@@ -147,7 +147,7 @@ public class LocacaoBicicletasApplication {
 			u6.setEmail("usuario6@gmail.com");
 			u6.setPassword(encoder.encode("usuario6"));
 			u6.setName("Usuario 6");
-			u6.setRole("Admin");
+			u6.setRole("ROLE_Admin");
 			u6.setEnabled(true);
 			usuarioDAO.save(u6);
 			

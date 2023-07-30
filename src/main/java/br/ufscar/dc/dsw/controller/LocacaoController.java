@@ -59,9 +59,9 @@ public class LocacaoController {
 	public String listar(ModelMap model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UsuarioDetails user = (UsuarioDetails) auth.getPrincipal();
-        if( user.getUsuario().getRole().equals("Cliente")){
+        if( user.getUsuario().getRole().equals("ROLE_Cliente")){
             model.addAttribute("locacoes", service.buscarTodosPorIdCliente(getClienteLogado().getId()));
-        }else if( user.getUsuario().getRole().equals("Locadora") ){
+        }else if( user.getUsuario().getRole().equals("ROLE_Locadora") ){
             model.addAttribute("locacoes", service.buscarTodosPorIdLocadora(getLocadoraLogada().getId()));
         }
 		

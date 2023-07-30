@@ -26,7 +26,7 @@ public class Usuario extends AbstractEntity<Long> {
     private String name;
     
     @NotBlank
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 30)
     private String role;
     
     @Column(nullable = false)
