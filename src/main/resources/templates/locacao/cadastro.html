@@ -28,35 +28,28 @@
 				<div th:replace="fragments/validacao :: validacao"></div>
 
 				<div class="form-row">
-					<div class="form-group col-md-12">
-						
-						<table class="table table-striped table-hover table-sm">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th th:text="#{locacao.locadora.label}"></th>
-									<th th:text="#{livro.ano.label}"></th>
-									<th th:text="#{livro.preco.label}"></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="locadora : ${locadoras}">
-									<td>
-										<input type="radio" th:id="${locadora.id}" name="locadora" th:value="${locadora.id}" th:field="*{locadora}" required>
-									</td>
-									<td th:text="${locadora.name}"></td>
-								</tr>
-							</tbody>
-						</table>
+					
+					<div class="form-group col-md-6">
+						<label th:text="#{locacao.locadora.label}" for="locadora"></label> 
+						<select id="locadora" class="form-control" th:field="*{locadora}"
+							th:classappend="${#fields.hasErrors('locadora')} ? is-invalid">
+							<option value="">Selecione</option>
+							<option th:each="locadora : ${locadoras}" th:value="${locadora.id}"
+								th:text="${locadora.name}"></option>
+						</select>
 
 						<div class="invalid-feedback">
 							<span th:errors="*{locadora}"></span>
 						</div>
 					</div>
+
+						
+					
 				</div>
 				
+				
+				
 				<input type="hidden" th:field="*{usuario}" id="usuario">
-				<input type="hidden" th:field="*{data}" id="data">
 
 				<button type="submit" th:text="#{button.salvar.label}"
 					class="btn btn-primary btn-sm"></button>

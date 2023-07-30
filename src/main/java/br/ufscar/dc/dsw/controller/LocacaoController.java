@@ -71,11 +71,11 @@ public class LocacaoController {
 	
 	@PostMapping("/salvar")
 	public String salvar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr) {
-		
+		Cliente cliente= getClienteLogado();
 		if (result.hasErrors()) {
 			return "locacao/cadastro";
 		}
-		
+		locacao.setCliente(cliente);
 		service.salvar(locacao);
 		attr.addFlashAttribute("sucess", "locacao.create.sucess");
 		return "redirect:/locacoes/listar";
