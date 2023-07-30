@@ -58,8 +58,8 @@ public class ClienteController {
 		if (result.hasErrors()) {
 			return "cliente/cadastro";
 		}
-
 		clienteService.salvar(cliente);
+		
 		attr.addFlashAttribute("sucess", "Cliente editado com sucesso.");
 		return "redirect:/clientes/listar";
 	}
