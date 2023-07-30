@@ -36,7 +36,6 @@
 							<th th:text="#{cliente.email.label}"></th>
 							<th th:text="#{cliente.nome.label}"></th>
 							<th th:text="#{cliente.papel.label}"></th>
-							<th th:text="#{acao.label}"></th>
 						</tr>
 					</thead>
 					<tbody>						
@@ -47,15 +46,17 @@
 							<td th:text="${cliente.sexo}"></td>
 							<td th:text="${cliente.dataNascimento}"></td>
 							<td th:text="${cliente.email}"></td>
-							<td th:text="${cliente.nome}"></td>
+							<td th:text="${cliente.name}"></td>
 							<td th:text="${cliente.role}"></td>
 							<td colspan="2">
 								<a class="btn btn-info btn-sm"
 									th:href="@{/clientes/editar/{id} (id=${cliente.id}) }" role="button"> 
 									<span class="oi oi-brush" th:title="#{link.editar.label}" aria-hidden="true"></span>
 								</a>
-								<button th:id="${#strings.concat('btn_clientes/excluir/',cliente.id)}" 
-									type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">
+								<button
+									th:id="${'btn_clientes/excluir/' + cliente.id}"
+									type="button" class="btn btn-danger btn-sm"
+									data-toggle="modal" data-target="#myModal">
 									<span class="oi oi-circle-x" th:title="#{link.excluir.label}" aria-hidden="true"></span>
 								</button>
 							</td>

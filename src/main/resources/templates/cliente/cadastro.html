@@ -15,7 +15,7 @@
 				</ul>
 			</div>
 			<a class="btn btn-primary btn-md" th:href="@{/clientes/listar}"
-				role="button"> <span class="oi oi-spreadsheet" title="Cadastro"
+				role="button"> <span class="oi oi-spreadsheet" title="Listar"
 				aria-hidden="true"></span> <span th:text="#{cliente.listar.label}"></span>
 			</a>
 		</nav>
@@ -87,13 +87,13 @@
 					</div>
 					
 					<div class="form-group col-md-6">
-						<label th:text="#{cliente.nome.label}" for="nome"></label>
-						<input type="text" class="form-control" id="nome" placeholder="Nome"
-							   autofocus="autofocus" th:field="*{nome}"
-							   th:classappend="${#fields.hasErrors('nome')} ? is-invalid" />
+						<label th:text="#{cliente.nome.label}" for="name"></label>
+						<input type="text" class="form-control" id="name" placeholder="Nome"
+							   autofocus="autofocus" th:field="*{name}"
+							   th:classappend="${#fields.hasErrors('name')} ? is-invalid" />
 					
 						<div class="invalid-feedback">
-							<span th:errors="*{nome}"></span>
+							<span th:errors="*{name}"></span>
 						</div>
 					</div>
 

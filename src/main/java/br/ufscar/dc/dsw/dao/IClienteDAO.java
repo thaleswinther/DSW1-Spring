@@ -12,8 +12,6 @@ import br.ufscar.dc.dsw.domain.Cliente;
 @SuppressWarnings("unchecked")
 public interface IClienteDAO extends CrudRepository<Cliente, String>{
 
-	/*@Query("SELECT u FROM User u WHERE u.email = :email")
-    public Usuario getUserByEmailUsuario(@Param("email") String email);*/
 
 	Cliente findById(long id);
 
