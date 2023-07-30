@@ -1,11 +1,14 @@
 package br.ufscar.dc.dsw.domain;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+
+
 
 @SuppressWarnings("serial")
 @Entity
@@ -14,7 +17,7 @@ import javax.validation.constraints.NotBlank;
 public class Usuario extends AbstractEntity<Long> {
   
 	@NotBlank
-    @Column(nullable = false, length = 20, unique = true)
+    @Column(nullable = false, length = 60, unique = true)
     private String email;
     
 	@NotBlank
@@ -43,6 +46,7 @@ public class Usuario extends AbstractEntity<Long> {
 	public String getPassword() {
 		return password;
 	}
+
 	
 	public void setPassword(String password) {
 		this.password = password;

@@ -1,6 +1,6 @@
 package br.ufscar.dc.dsw;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.springframework.boot.CommandLineRunner;
@@ -86,7 +86,8 @@ public class LocacaoBicicletasApplication {
 			c1.setCPF("012.345.678-90");
 			c1.setTelefone("11111111");
 			c1.setSexo("Masculino");
-			c1.setDataNascimento(LocalDate.of(2000, 8, 19));
+			//c1.setDataNascimento(LocalDate.of(2000, 8, 19));
+			c1.setDataNascimento("2000-08-19");
 			clienteDAO.save(c1);
 			
 			Cliente c2 = new Cliente();
@@ -98,7 +99,8 @@ public class LocacaoBicicletasApplication {
 			c2.setCPF("985.849.614-10");
 			c2.setTelefone("22222222");
 			c2.setSexo("Feminino");
-			c2.setDataNascimento(LocalDate.of(1985, 5, 10));
+			//c2.setDataNascimento(LocalDate.of(1985, 5, 10));
+			c2.setDataNascimento("1985-05-10");
 			clienteDAO.save(c2);
 
 			Locadora l1 = new Locadora();

@@ -1,6 +1,5 @@
 package br.ufscar.dc.dsw.domain;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -34,8 +33,9 @@ public class Cliente extends Usuario {
 	private String sexo;
 	
 	@NotNull(message = "{NotNull.cliente.dataNascimento}")
-	@Column(nullable = false)
-	private LocalDate dataNascimento;
+	@Column(nullable = false, length = 30)
+	private String dataNascimento;
+	//private LocalDate dataNascimento;
     
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
 	private List<Locacao> locacoes;
@@ -64,11 +64,19 @@ public class Cliente extends Usuario {
 		this.sexo = sexo;
 	}
 
-	public LocalDate getDataNascimento() {
+	/*public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 
 	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}*/
+
+	public String getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

@@ -84,6 +84,17 @@
 							<span th:errors="*{email}"></span>
 						</div>
 					</div>
+
+					<div class="form-group col-md-6"> 
+						<label th:text="#{cliente.senha.label}" for="password"></label>
+						<input type="password" class="form-control" id="password" placeholder="Senha"
+							autofocus="autofocus" th:field="*{password}"
+							th:classappend="${#fields.hasErrors('password')} ? is-invalid" />
+					
+						<div class="invalid-feedback">
+							<span th:errors="*{password}"></span>
+						</div>
+					</div>
 					
 					<div class="form-group col-md-6">
 						<label th:text="#{cliente.nome.label}" for="name"></label>
