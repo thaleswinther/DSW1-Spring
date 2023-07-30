@@ -79,7 +79,7 @@ public class LocacaoBicicletasApplication {
 			
 			Cliente c1 = new Cliente();
 			c1.setEmail("usuario1@gmail.com");
-			c1.setPassword("usuario1");
+			c1.setPassword(encoder.encode("usuario1"));
 			c1.setName("Cliente 1");
 			c1.setRole("Cliente");
 			c1.setEnabled(true);
@@ -91,7 +91,7 @@ public class LocacaoBicicletasApplication {
 			
 			Cliente c2 = new Cliente();
 			c2.setEmail("usuario2@gmail.com");
-			c2.setPassword("usuario2");
+			c2.setPassword(encoder.encode("usuario2"));
 			c2.setName("Cliente 2");
 			c2.setRole("Cliente");
 			c2.setEnabled(true);
@@ -103,7 +103,7 @@ public class LocacaoBicicletasApplication {
 
 			Locadora l1 = new Locadora();
 			l1.setEmail("usuario3@gmail.com");
-			l1.setPassword("usuario3");
+			l1.setPassword(encoder.encode("usuario3"));
 			l1.setName("Locadora 1");
 			l1.setRole("Locadora");
 			l1.setEnabled(true);
@@ -113,7 +113,7 @@ public class LocacaoBicicletasApplication {
 
 			Locadora l2 = new Locadora();
 			l2.setEmail("usuario4@gmail.com");
-			l2.setPassword("usuario4");
+			l2.setPassword(encoder.encode("usuario4"));
 			l2.setName("Locadora 2");
 			l2.setRole("Locadora");
 			l2.setEnabled(true);
@@ -123,7 +123,7 @@ public class LocacaoBicicletasApplication {
 
 			Locadora l3 = new Locadora();
 			l3.setEmail("usuario5@gmail.com");
-			l3.setPassword("usuario5");
+			l3.setPassword(encoder.encode("usuario5"));
 			l3.setName("Locadora 3");
 			l3.setRole("Locadora");
 			l3.setEnabled(true);
@@ -142,6 +142,14 @@ public class LocacaoBicicletasApplication {
 			locacao2.setLocadora(l2); 
 			locacao2.setDataHora(LocalDateTime.of(2023, 8, 29, 14, 0, 0));
 			locacaoDAO.save(locacao2); 
+
+			Usuario u6 = new Usuario();
+			u6.setEmail("usuario6@gmail.com");
+			u6.setPassword(encoder.encode("usuario6"));
+			u6.setName("Usuario 6");
+			u6.setRole("Admin");
+			u6.setEnabled(true);
+			usuarioDAO.save(u6);
 			
 		};
 	}

@@ -29,14 +29,14 @@
 
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label th:text="#{usuario.username.label}" for="username"></label> 
-						<input type="text" class="form-control" id="username"
+						<label th:text="#{usuario.username.label}" for="email"></label> 
+						<input type="text" class="form-control" id="email"
 							th:placeholder="#{usuario.username.label}"
-							autofocus="autofocus" th:field="*{username}"
+							autofocus="autofocus" th:field="*{email}"
 							th:classappend="${#fields.hasErrors('username')} ? is-invalid" />
 
 						<div class="invalid-feedback">
-							<span th:errors="*{username}"></span>
+							<span th:errors="*{email}"></span>
 						</div>
 					</div>
 
