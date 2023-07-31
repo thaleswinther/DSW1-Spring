@@ -1,5 +1,8 @@
 package br.ufscar.dc.dsw.controller;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -76,12 +79,26 @@ public class LocacaoController {
 			return "locacao/cadastro";
 		}
 
+
 		String hora = locacao.getHora();
 		if (hora.length() == 1) {
 			hora = "0" + hora;
 		}
 		locacao.setHora(hora + ":00:00");
 		locacao.setCliente(cliente);
+
+		
+		LocalDate locacaoDate = LocalDate.parse(locacao.getData());
+		LocalTime locacaoTime = LocalTime.parse(locacao.getHora());
+		LocalDateTime locacaoDateTime = locacaoDate.atTime(locacaoTime);
+
+		LocalDateTime currentDateTime = LocalDateTime.now();
+		
+		if (locacaoDateTime.isBefore(currentDateTime)) {
+			result.rejectValue("data", "error.locacao", "Não é permitido alocar locações com datas e horas passadas.");
+			return "locacao/cadastro";
+		}
+
 
 		// Buscar todas as locações do cliente logado
 		List<Locacao> locacoesCliente = service.buscarTodosPorIdCliente(cliente.getId());
