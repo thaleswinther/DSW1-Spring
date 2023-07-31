@@ -1,9 +1,5 @@
 package br.ufscar.dc.dsw.controller;
 
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -84,26 +80,32 @@ public class LocacaoController {
 		if (hora.length() == 1) {
 			hora = "0" + hora;
 		}
+		locacao.setHora(hora + ":00:00");
+		locacao.setCliente(cliente);
 
-		// Specify the format of the date used in the form
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		LocalDate locacaoDate = LocalDate.parse(locacao.getData(), formatter);
-		
-		
-		// Get the current date
-		LocalDate currentDate = LocalDate.now();
+		// Buscar todas as locações do cliente logado
+		List<Locacao> locacoesCliente = service.buscarTodosPorIdCliente(cliente.getId());
 
-		if (locacaoDate.isBefore(currentDate)) {
-			attr.addFlashAttribute("error", "locacao.create.fail");
-			return "redirect:/locacoes/cadastrar";
+		// Verificar se já existe uma locação para o cliente no mesmo dia e horário
+		if (locacoesCliente.stream().anyMatch(loc -> loc.getData().equals(locacao.getData()) && loc.getHora().equals(locacao.getHora()))) {
+			result.rejectValue("data", "error.locacao", "Já existe uma locação para este cliente neste dia e horário.");
+			return "locacao/cadastro";
+		}
+	
+		// Buscar todas as locações da locadora em que a locação está sendo realizada
+		List<Locacao> locacoesLocadora = service.buscarTodosPorIdLocadora(locacao.getLocadora().getId());
+	
+		// Verificar se a locadora já possui uma locação no mesmo dia e horário
+		if (locacoesLocadora.stream().anyMatch(loc -> loc.getData().equals(locacao.getData()) && loc.getHora().equals(locacao.getHora()))) {
+			result.rejectValue("data", "error.locacao", "Esta locadora já possui uma locação neste dia e horário.");
+			return "locacao/cadastro";
 		}
 
-		locacao.setCliente(cliente);
-		locacao.setHora(hora + ":00:00");
 		service.salvar(locacao);
 		attr.addFlashAttribute("success", "locacao.create.success");
 		return "redirect:/locacoes/listar";
 	}
+
 
 	
 	@ModelAttribute("locadoras")
