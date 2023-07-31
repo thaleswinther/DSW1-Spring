@@ -33,7 +33,7 @@ public class LocacaoBicicletasApplication {
 			c1.setRole("ROLE_Cliente");
 			c1.setEnabled(true);
 			c1.setCPF("012.345.678-90");
-			c1.setTelefone("11111111");
+			c1.setTelefone("(11) 11111-1111");
 			c1.setSexo("Masculino");
 			//c1.setDataNascimento(LocalDate.of(2000, 8, 19));
 			c1.setDataNascimento("2000-08-19");
@@ -46,7 +46,7 @@ public class LocacaoBicicletasApplication {
 			c2.setRole("ROLE_Cliente");
 			c2.setEnabled(true);
 			c2.setCPF("985.849.614-10");
-			c2.setTelefone("22222222");
+			c2.setTelefone("(22) 22222-2222");
 			c2.setSexo("Feminino");
 			//c2.setDataNascimento(LocalDate.of(1985, 5, 10));
 			c2.setDataNascimento("1985-05-10");

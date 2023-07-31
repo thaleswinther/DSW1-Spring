@@ -1,5 +1,11 @@
 package br.ufscar.dc.dsw.controller;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +45,21 @@ public class ClienteController {
 	public String salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr, BCryptPasswordEncoder encoder) {
 
 		if (result.hasErrors()) {
+			return "cliente/cadastro";
+		}
+
+		// Verifica se a data de nascimento é válida e não é futura
+    
+        // Verifica se a data de nascimento é válida e não é futura
+		try {
+			LocalDate dataNascimento = LocalDate.parse(cliente.getDataNascimento());
+			LocalDate dataAtual = LocalDate.now();
+			if (dataNascimento.isAfter(dataAtual)) {
+				result.rejectValue("dataNascimento", "error.cliente", "A data de nascimento não pode ser futura");
+				return "cliente/cadastro";
+			}
+		} catch (Exception e) {
+			result.rejectValue("dataNascimento", "error.cliente", "Data de nascimento inválida");
 			return "cliente/cadastro";
 		}
 

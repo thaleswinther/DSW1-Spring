@@ -27,7 +27,7 @@ public class Cliente extends Usuario {
 	private String CPF;
 
 	@NotBlank(message = "{NotBlank.cliente.telefone}")
-	@Size(max = 60)
+	@Size(min = 15, max = 15,  message = "{Size.telefone.CPF}")
 	@Column(nullable = false, length = 60)
 	private String telefone;
     
