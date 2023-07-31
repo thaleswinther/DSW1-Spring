@@ -19,63 +19,63 @@ import br.ufscar.dc.dsw.service.spec.IUsuarioService;
 @Controller
 @RequestMapping("/usuarios")
 public class UsuarioController {
-	
+
 	@Autowired
 	private IUsuarioService service;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder encoder;
-	
+
 	@GetMapping("/cadastrar")
 	public String cadastrar(Usuario usuario) {
 		return "usuario/cadastro";
 	}
-	
+
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
 		model.addAttribute("usuarios",service.buscarTodos());
 		return "usuario/lista";
 	}
-	
+
 	@PostMapping("/salvar")
 	public String salvar(@Valid Usuario usuario, BindingResult result, RedirectAttributes attr) {
-		
+
 		if (result.hasErrors()) {
 			return "usuario/cadastro";
 		}
 
 		System.out.println("password = " + usuario.getPassword());
-		
+
 		usuario.setPassword(encoder.encode(usuario.getPassword()));
 		service.salvar(usuario);
-		attr.addFlashAttribute("sucess", "usuario.create.sucess");
+		attr.addFlashAttribute("success", "usuario.create.success");
 		return "redirect:/usuarios/listar";
 	}
-	
+
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("usuario", service.buscarPorId(id));
 		return "usuario/cadastro";
 	}
-	
+
 	@PostMapping("/editar")
 	public String editar(@Valid Usuario usuario, BindingResult result, RedirectAttributes attr) {
-		
+
 		if (result.hasErrors()) {
 			return "usuario/cadastro";
 		}
 
 		System.out.println(usuario.getPassword());
-		
+
 		service.salvar(usuario);
-		attr.addFlashAttribute("sucess", "usuario.edit.sucess");
+		attr.addFlashAttribute("success", "usuario.edit.success");
 		return "redirect:/usuarios/listar";
 	}
-	
+
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
 		service.excluir(id);
-		model.addAttribute("sucess", "usuario.delete.sucess");
+		model.addAttribute("success", "usuario.delete.success");
 		return listar(model);
 	}
 }

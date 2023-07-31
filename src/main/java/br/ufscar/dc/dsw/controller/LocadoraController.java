@@ -19,61 +19,61 @@ import br.ufscar.dc.dsw.service.spec.ILocadoraService;
 @Controller
 @RequestMapping("/locadoras")
 public class LocadoraController {
-	
+
 	@Autowired
 	private ILocadoraService service;
-	
+
 	@GetMapping("/cadastrar")
 	public String cadastrar(Locadora locadora) {
 		return "locadora/cadastro";
 	}
-	
+
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
 		model.addAttribute("locadoras",service.buscarTodos());
 		return "locadora/lista";
 	}
-	
+
 	@PostMapping("/salvar")
 	public String salvar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr, BCryptPasswordEncoder encoder) {
-		
-		if (result.hasErrors()) {
-			return "locadora/cadastro";
-		}
-		
-		locadora.setPassword(encoder.encode(locadora.getPassword()));
-		service.salvar(locadora);
-		attr.addFlashAttribute("sucess", "Locadora inserida com sucesso.");
-		return "redirect:/locadoras/listar";
-	}
-	
-	@GetMapping("/editar/{id}")
-	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
-		model.addAttribute("locadora", service.buscarPorId(id));
-		return "locadora/cadastro";
-	}
-	
-	@PostMapping("/editar")
-	public String editar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr, BCryptPasswordEncoder encoder) {
-		
-		
+
 		if (result.hasErrors()) {
 			return "locadora/cadastro";
 		}
 
 		locadora.setPassword(encoder.encode(locadora.getPassword()));
 		service.salvar(locadora);
-		attr.addFlashAttribute("sucess", "Locadora editada com sucesso.");
+		attr.addFlashAttribute("success", "locadora.create.success");
 		return "redirect:/locadoras/listar";
 	}
-	
+
+	@GetMapping("/editar/{id}")
+	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+		model.addAttribute("locadora", service.buscarPorId(id));
+		return "locadora/cadastro";
+	}
+
+	@PostMapping("/editar")
+	public String editar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr, BCryptPasswordEncoder encoder) {
+
+
+		if (result.hasErrors()) {
+			return "locadora/cadastro";
+		}
+
+		locadora.setPassword(encoder.encode(locadora.getPassword()));
+		service.salvar(locadora);
+		attr.addFlashAttribute("success", "locadora.edit.success");
+		return "redirect:/locadoras/listar";
+	}
+
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
 		if (service.locadoraTemLocacoes(id)) {
-			model.addAttribute("fail", "Locadora não excluída. Possui locacao(es) vinculada(s).");
+			model.addAttribute("fail", "locadora.delete.fail");
 		} else {
 			service.excluir(id);
-			model.addAttribute("sucess", "Locadora excluída com sucesso.");
+			model.addAttribute("success", "locadora.delete.success");
 		}
 		return listar(model);
 	}
