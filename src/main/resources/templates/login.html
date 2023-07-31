@@ -3,6 +3,24 @@
 	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout2}">
 <head>
 <title th:text="#{login.message}"></title>
+<style>
+    /* Estilo para o link de listar as locadoras */
+    .link-locadoras {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+        color: #007bff;
+        text-decoration: none;
+        border: 1px solid #007bff;
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: background-color 0.2s, color 0.2s;
+    }
+    .link-locadoras:hover {
+        background-color: #007bff;
+        color: #ffffff;
+    }
+</style>
 </head>
 <body>
 	<div layout:fragment="content" th:remove="tag">
@@ -38,6 +56,8 @@
 				</form>
 			</div>
 		</div>
+		<!-- Link estilizado e posicionado para listar as locadoras -->
+		<a class="link-locadoras" th:href="@{/lista/locadoras/}">Listagem de locadoras</a>
 	</div>
 </body>
 </html>
