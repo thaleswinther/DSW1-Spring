@@ -71,15 +71,24 @@ public class LocacaoController {
 	
 	@PostMapping("/salvar")
 	public String salvar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr) {
-		Cliente cliente= getClienteLogado();
+		Cliente cliente = getClienteLogado();
+
 		if (result.hasErrors()) {
 			return "locacao/cadastro";
 		}
+
+		String hora = locacao.getHora();
+		if (hora.length() == 1) {
+			hora = "0" + hora;
+		}
+
 		locacao.setCliente(cliente);
+		locacao.setHora(hora + ":00:00");
 		service.salvar(locacao);
-		attr.addFlashAttribute("sucess", "locacao.create.sucess");
+		attr.addFlashAttribute("success", "locacao.create.success");
 		return "redirect:/locacoes/listar";
 	}
+
 	
 	@ModelAttribute("locadoras")
 	public List<Locadora> listaLocadoras() {
