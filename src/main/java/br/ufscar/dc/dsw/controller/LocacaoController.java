@@ -76,6 +76,8 @@ public class LocacaoController {
 			return "locacao/cadastro";
 		}
 		locacao.setCliente(cliente);
+		String hora = locacao.getHora() + ":00:00";
+		locacao.setHora(hora);
 		service.salvar(locacao);
 		attr.addFlashAttribute("sucess", "locacao.create.sucess");
 		return "redirect:/locacoes/listar";

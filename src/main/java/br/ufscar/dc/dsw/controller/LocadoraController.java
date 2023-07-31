@@ -24,7 +24,9 @@ public class LocadoraController {
 	private ILocadoraService service;
 	
 	@GetMapping("/cadastrar")
-	public String cadastrar(Locadora locadora) {
+	public String cadastrar(Locadora locadora, ModelMap model) {
+		List<Locadora> locadoras = service.buscarTodos();
+		model.addAttribute("locadoras", locadoras);
 		return "locadora/cadastro";
 	}
 	
