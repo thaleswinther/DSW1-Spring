@@ -57,7 +57,8 @@ public class LocadoraController {
 	public String editar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr, BCryptPasswordEncoder encoder) {
 
 
-		if (result.hasErrors()) {
+		if (result.getFieldErrorCount() > 1 || result.getFieldError("CNPJ") == null) {
+			System.out.println("\n\n\nTHALES WINTHER\n\n\n");
 			return "locadora/cadastro";
 		}
 

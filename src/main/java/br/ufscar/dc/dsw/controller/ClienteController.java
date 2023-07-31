@@ -57,9 +57,11 @@ public class ClienteController {
 	@PostMapping("/editar")
 	public String editar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr, BCryptPasswordEncoder encoder) {
 
-		if (result.hasErrors()) {
+		if (result.getFieldErrorCount() > 1 || result.getFieldError("CPF") == null) {
+			System.out.println("\n\n\nTHALES WINTHER\n\n\n");
 			return "cliente/cadastro";
 		}
+
 		cliente.setPassword(encoder.encode(cliente.getPassword()));
 		clienteService.salvar(cliente);
 
