@@ -1,6 +1,9 @@
 package br.ufscar.dc.dsw.controller;
 
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -80,6 +83,19 @@ public class LocacaoController {
 		String hora = locacao.getHora();
 		if (hora.length() == 1) {
 			hora = "0" + hora;
+		}
+
+		// Specify the format of the date used in the form
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate locacaoDate = LocalDate.parse(locacao.getData(), formatter);
+		
+		
+		// Get the current date
+		LocalDate currentDate = LocalDate.now();
+
+		if (locacaoDate.isBefore(currentDate)) {
+			attr.addFlashAttribute("error", "locacao.create.fail");
+			return "redirect:/locacoes/cadastrar";
 		}
 
 		locacao.setCliente(cliente);

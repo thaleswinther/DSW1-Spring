@@ -67,5 +67,4 @@ public class Locacao extends AbstractEntity<Long> {
 		this.hora = hora;
 	}
 
-
 }
