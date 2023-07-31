@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout2}">
 <head>
     <title>Lista de Locadoras</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -52,50 +53,53 @@
     </style>
 </head>
 <body>
-    <div class="container" id="listagem">
+    <div layout:fragment="content" th:remove="tag">
+        <div class="container" id="listagem">
+            <br /> <br /> <br />
 
-        <div th:replace="fragments/alert"></div>
+            <div th:replace="fragments/alert"></div>
 
-        <h1 class="display-4">Listagem de Locadoras</h1>
+            <h1 class="display-4" th:text="#{locadora.titulo.lista.label}">Listagem de Locadoras</h1>
 
-        <form action="#" method="get">
-            <div class="form-group">
-                <label for="filtroCidade">Filtrar por cidade:</label>
-                <select class="form-control" id="filtroCidade" name="filtroCidade">
-                    <option value="">Todas</option>
-                    <option th:each="cidade : ${cidades}" th:value="${cidade}" th:text="${cidade}"></option>
-                </select>
+            <form action="#" method="get">
+                <div class="form-group">
+                    <label for="filtroCidade" th:text="#{locadora.filtro.label}"></label>
+                    <select class="form-control" id="filtroCidade" name="filtroCidade">
+                        <option value="" th:text="#{locadora.todasAsCidades.label}"></option>
+                        <option th:each="cidade : ${cidades}" th:value="${cidade}" th:text="${cidade}"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-filtrar" th:text="#{locadora.botao.filtrar.label}"></button>
+            </form>
+
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-sm">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>#</th>
+                            <th th:text="#{locadora.cnpj.label}">CNPJ</th>
+                            <th th:text="#{locadora.cidade.label}">Cidade</th>
+                            <th th:text="#{locadora.email.label}">Email</th>
+                            <th th:text="#{locadora.nome.label}">Nome</th>
+                            <th th:text="#{locadora.papel.label}">Papel</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="locadora : ${locadoras}">
+                            <td th:text="${locadora.id}"></td>
+                            <td th:text="${locadora.CNPJ}"></td>
+                            <td th:text="${locadora.cidade}"></td>
+                            <td th:text="${locadora.email}"></td>
+                            <td th:text="${locadora.name}"></td>
+                            <td th:text="${locadora.role}"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <button type="submit" class="btn btn-primary btn-filtrar">Filtrar</button>
-        </form>
 
-        <div class="table-responsive">
-            <table class="table table-striped table-hover table-sm">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>#</th>
-                        <th th:text="#{locadora.cnpj.label}">CNPJ</th>
-                        <th th:text="#{locadora.cidade.label}">Cidade</th>
-                        <th th:text="#{locadora.email.label}">Email</th>
-                        <th th:text="#{locadora.nome.label}">Nome</th>
-                        <th th:text="#{locadora.papel.label}">Papel</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="locadora : ${locadoras}">
-                        <td th:text="${locadora.id}"></td>
-                        <td th:text="${locadora.CNPJ}"></td>
-                        <td th:text="${locadora.cidade}"></td>
-                        <td th:text="${locadora.email}"></td>
-                        <td th:text="${locadora.name}"></td>
-                        <td th:text="${locadora.role}"></td>
-                    </tr>
-                </tbody>
-            </table>
+            <!-- Link de retorno à tela de login -->
+            <a class="link-login" th:href="@{/login}" th:text="#{locadora.botao.voltar.label}"></a>
         </div>
-
-        <!-- Link de retorno à tela de login -->
-        <a class="link-login" th:href="@{/login}">Voltar à tela de login</a>
     </div>
 </body>
 </html>

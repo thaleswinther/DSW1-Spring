@@ -44,7 +44,7 @@ public class ClienteController {
 
 		cliente.setPassword(encoder.encode(cliente.getPassword()));
 		clienteService.salvar(cliente);
-		attr.addFlashAttribute("sucess", "Cliente inserido com sucesso");
+		attr.addFlashAttribute("success", "cliente.create.success");
 		return "redirect:/clientes/listar";
 	}
 
@@ -62,15 +62,15 @@ public class ClienteController {
 		}
 		cliente.setPassword(encoder.encode(cliente.getPassword()));
 		clienteService.salvar(cliente);
-		
-		attr.addFlashAttribute("sucess", "Cliente editado com sucesso.");
+
+		attr.addFlashAttribute("success", "cliente.edit.success");
 		return "redirect:/clientes/listar";
 	}
 
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
 		clienteService.excluir(id);
-		attr.addFlashAttribute("sucess", "Cliente excluído com sucesso.");
+		attr.addFlashAttribute("success", "cliente.delete.success");
 		return "redirect:/clientes/listar";
 	}
 }

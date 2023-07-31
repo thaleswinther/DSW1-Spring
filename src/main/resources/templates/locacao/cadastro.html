@@ -21,7 +21,7 @@
 		<div class="container" id="cadastro">
 
 			<div th:replace="fragments/alert"></div>
-			
+
 
 			<form th:action="@{/locacoes/salvar}" th:object="${locacao}"
 				method="POST">
@@ -32,7 +32,7 @@
 					<div class="form-group col-md-12">
 						<label th:text="#{locacao.locadora.label}"></label>
 						<select name="locadora" th:field="*{locadora}" class="form-control" required>
-							<option value="">Selecione a locadora</option>
+							<option value="" th:text="#{locacao.locadora.placeholder}"></option>
 							<!-- Use th:each para iterar pelas locadoras e gerar as opções -->
 							<option th:each="locadora : ${locadoras}" th:value="${locadora.id}" th:text="${locadora.name}"></option>
 						</select>
@@ -54,7 +54,7 @@
 					<div class="form-group col-md-6">
 						<label th:text="#{locacao.hora.label}" for="hora"></label>
 						<select id="hora" name="hora" th:field="*{hora}" class="form-control" required>
-							<option value="">Selecione o horário</option>
+							<option value="" th:text="#{locacao.hora.placeholder}"></option>
 							<!-- Use th:each para iterar pelos horários e gerar as opções -->
 							<option th:each="hour : ${#numbers.sequence(0, 23)}" th:value="${hour}" th:text="${hour + ':00'}"></option>
 						</select>
