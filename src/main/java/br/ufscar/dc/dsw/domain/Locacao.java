@@ -1,9 +1,5 @@
 package br.ufscar.dc.dsw.domain;
 
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -69,10 +65,5 @@ public class Locacao extends AbstractEntity<Long> {
 	public void setHora(String hora) {
 		this.hora = hora;
 	}
-
-	 public LocalDateTime getDataHora() {
-        String dateTimeString = this.getData() + "T" + this.getHora() + ":00";
-        return LocalDateTime.parse(dateTimeString);
-    }
 
 }
