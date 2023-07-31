@@ -10,10 +10,14 @@ public interface ILocadoraService {
 
 	List<Locadora> buscarTodos();
 
+    List<Locadora> buscarPorCidade(String cidade);
+
+	List<String> buscarTodasCidades();
+
 	void salvar(Locadora locadora);
 
 	void excluir(Long id);
-	
+
 	boolean locadoraTemLocacoes(Long id);
-	
+
 }

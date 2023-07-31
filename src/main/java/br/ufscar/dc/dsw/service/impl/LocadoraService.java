@@ -3,6 +3,7 @@ package br.ufscar.dc.dsw.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +17,7 @@ public class LocadoraService implements ILocadoraService {
 
 	@Autowired
 	ILocadoraDAO dao;
-	
+
 	public void salvar(Locadora locadora) {
 		dao.save(locadora);
 	}
@@ -34,9 +35,19 @@ public class LocadoraService implements ILocadoraService {
 	public List<Locadora> buscarTodos() {
 		return dao.findAll();
 	}
-	
+
+	@Transactional(readOnly = true)
+	public List<Locadora> buscarPorCidade(String cidade) {
+		return dao.findByCidade(cidade);
+	}
+
 	@Transactional(readOnly = true)
 	public boolean locadoraTemLocacoes(Long id) {
-		return !dao.findById(id.longValue()).getLocacoes().isEmpty(); 
+		return !dao.findById(id.longValue()).getLocacoes().isEmpty();
 	}
+
+	@Transactional(readOnly = true)
+    public List<String> buscarTodasCidades() {
+        return dao.findAllCidades(); // Implemente esse método na classe ILocadoraDAO
+    }
 }
